@@ -1,0 +1,10 @@
+#!/bin/bash
+filename="nope"
+[[  -e "index.ts"  ]] && filename=index.ts
+[[  -e "server.ts"  ]] && filename=server.ts
+[  "$filename" == "nope"  ] && echo "Não localizou index.ts nem server.ts" && exit 1
+# res="$(printf "/*\n" && tsc "$filename" && node ${filename/\.ts/\.js} && printf "*/\n")"
+res="$(printf "/*\n" && tsc && node ${filename/\.ts/\.js} && printf "*/\n")"
+printf "%s" "$res"
+
+
